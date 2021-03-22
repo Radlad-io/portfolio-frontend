@@ -13,17 +13,9 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@font-face {
-	font-family: 'AuxMono-Regular';
-	src: url('/fonts/aux-mono-regular.eot');
-	src: url('/fonts/aux-mono-regular.eot?#iefix') format('embedded-opentype'),
-             url('/fonts/aux-mono-regular.woff2') format('woff2'),
-	     url('/fonts/aux-mono-regular.woff') format('woff'),
-	     url('/fonts/aux-mono-regular.ttf') format('truetype'),
-	     url('/fonts/aux-mono-regular.svg#youworkforthem') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
+
 /* TODO: Preload font. https://kirazhang.com/posts/nextjs-custom-fonts */
