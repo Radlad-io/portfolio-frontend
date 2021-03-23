@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Container from '../components/Layout/Container'
 import Menu from '../components/Menu'
+import Header from '../components/Header'
 
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
     <div>
       <Menu />
       <Container>
-        <h1>Home Page</h1>
+        <Header title='Home' />
       </Container>
     </div>
   )

@@ -3,11 +3,11 @@ import Menu from '../components/Menu'
 
 export default function Home() {
   return (
-    <div>
+    <>
+      <Menu />
       <Container>
         <h1>Pizza</h1>
       </Container>
-      <Menu />
-    </div>
+    </>
   )
 }

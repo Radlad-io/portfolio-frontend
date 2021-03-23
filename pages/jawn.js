@@ -7,25 +7,10 @@ import { motion } from "framer-motion"
 export default function Home() {
   return (
     <>
-
-        <h1>Jawn</h1> 
-
-        <div
-          className='test'
-          animate={{ scale: 0.5 }} 
-        />
-
-
-      <style jsx>{`
-
-        .test{
-          width: 100px;
-          height: 100px;
-          background-color: red;
-        }
-
-      `}
-      </style>
+      <Menu />
+      <Container>
+        <h1>Jawn Page</h1>
+      </Container>
     </>
   )
 }

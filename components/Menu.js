@@ -16,7 +16,7 @@ const MenuStyle = styled.div`
     background-color: black;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,7 +27,7 @@ const NavStyle = styled.h1`
         font-family: 'AuxMono-Regular';
         src: url('/fonts/aux-mono-regular.eot');
         src: url('/fonts/aux-mono-regular.eot?#iefix') format('embedded-opentype'),
-                url('/fonts/aux-mono-regular.woff2') format('woff2'),
+            url('/fonts/aux-mono-regular.woff2') format('woff2'),
             url('/fonts/aux-mono-regular.woff') format('woff'),
             url('/fonts/aux-mono-regular.ttf') format('truetype'),
             url('/fonts/aux-mono-regular.svg#youworkforthem') format('svg');
@@ -50,11 +50,13 @@ const iconVariants = {
     opened: {
         rotate: 45,
         scale: 2.5,
-        fill: 'red',
     },
     closed: {
         rotate: 0,
         scale: 2.5,
+    },
+    transition: {
+        duration: 1
     }
 }
 
@@ -67,12 +69,34 @@ const menuVariants = {
     }
 }
 
+const MenuList = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: .1
+        }
+    }
+}
+
+const MenuItem = {
+    hidden: {
+        y: 15,
+        opacity: 0 
+    },
+    show: {
+        y: 0,
+        opacity: 1 
+    }
+  }
+
+
 function Menu() {
     const router = useRouter()
     const [ isOpen, setIsOpen ] = useState(false)
 
     return (
-        <>  
+        <>
         <IconStyle>
                 <div
                     onClick={() => setIsOpen(state => !state)}
@@ -80,6 +104,8 @@ function Menu() {
                 <motion.svg
                     variants={iconVariants}
                     animate={isOpen ? 'opened' : 'closed'}
+                    whileHover={{ scale: 3 }}
+                    whileTap={{ scale: 1.8 }}
                     width='24'
                     height='24'
                     viewBox="0 0 24 24"
@@ -97,20 +123,70 @@ function Menu() {
             initial={false}
             variants={menuVariants}
             animate={isOpen ? 'opened' : 'closed'}
-            transition={{ ease: "easeOut", duration: 0.35 }}
-            
+            transition={{ ease: "easeOut", duration: 0.25 }}
         >
             <MenuStyle>
                 <motion.div 
                     className="menu"
+                    variants={MenuList}
+                    initial="hidden"
+                    animate={isOpen ? 'show' : 'hidden'}
+                    transition={{ease: 'easeOut'}}
                 >
                     <NavStyle>
-                        <h1 className="active">Home <SpanStyle><span>🏠</span></SpanStyle></h1>
-                        <h1>Work <SpanStyle><span>🛠️</span></SpanStyle></h1>
-                        <h1>Jawn <SpanStyle><span>💡</span></SpanStyle></h1>
-                        <h1>Pizza <SpanStyle><span>🍕</span></SpanStyle></h1>
-                        <h1>About <SpanStyle><span>😬</span></SpanStyle></h1>
-                        <h1>Contact <SpanStyle><span>📪</span></SpanStyle></h1>
+                        <motion.h1 
+                            className="active" 
+                            variants={MenuItem}
+                            transition={{ease: 'easeInOut', duration: 0.15}}
+                        >
+                        <Link href='/'>
+                            <a> Home <SpanStyle><span>🏠</span></SpanStyle></a>
+                        </Link>
+                           
+                        </motion.h1>
+
+                        <motion.h1 
+                            variants={MenuItem}
+                            transition={{ease: 'easeInOut', duration: 0.15}}
+                        >
+                            <Link href='/work'>
+                                <a>Work <SpanStyle><span>🛠️</span></SpanStyle></a>
+                            </Link>
+                        </motion.h1>
+
+                        <motion.h1 
+                            variants={MenuItem}
+                            transition={{ease: 'easeInOut', duration: 0.15}}
+                        >
+                            <Link href='/jawn'>
+                                <a>Jawn <SpanStyle><span>💡</span></SpanStyle></a>
+                            </Link>
+                        </motion.h1>
+
+                        <motion.h1 
+                            variants={MenuItem}
+                            transition={{ease: 'easeInOut', duration: 0.15}}
+                        >
+                            <Link href='/pizza'>
+                                <a>Pizza <SpanStyle><span>🍕</span></SpanStyle></a>
+                            </Link>
+                        </motion.h1>
+                        <motion.h1 
+                            variants={MenuItem}
+                            transition={{ease: 'easeInOut', duration: 0.15}}
+                        >
+                            <Link href='about'>
+                                <a>About <SpanStyle><span>😬</span></SpanStyle></a>
+                            </Link>
+                        </motion.h1>
+                        <motion.h1 
+                            variants={MenuItem}
+                            transition={{ease: 'easeInOut', duration: 0.15}}
+                        >
+                            <Link href='/contact'>
+                                <a>Contact <SpanStyle><span>📪</span></SpanStyle></a>
+                            </Link>
+                        </motion.h1>
                     </NavStyle>
                 </motion.div>
             </MenuStyle>
