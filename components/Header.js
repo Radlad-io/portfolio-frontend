@@ -4,6 +4,7 @@ const HeaderStyle = styled.h1`
     font-size: 4rem;
     font-family: 'AuxMono-Regular';
     text-transform: uppercase;
+    color: black;
 `
 
 const EmojiStyle = styled.h1`
@@ -18,7 +19,7 @@ function Header(props) {
     return (
         <div>
             <HeaderStyle>
-                <h1>{title} <EmojiStyle>{emoji}</EmojiStyle></h1>
+                {title} <EmojiStyle>{emoji}</EmojiStyle>
             </HeaderStyle>
         </div>
     )

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Router from 'next/router'
 import Menu from '@components/Menu'
 
 function Layout({children}) {
 
-    const [ menuState, setMenuStaten ] = useState(false)
+    const [ menuState, setMenuState ] = useState(false)
 
     return (
         <>  
-            <Menu menuState={menuState} setMenuStaten={setMenuStaten}/>
+            <Menu menuState={menuState} setMenuState={setMenuState}/>
             {children}
         </>
     )

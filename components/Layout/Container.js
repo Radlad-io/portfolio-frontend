@@ -9,7 +9,7 @@ function Container({children}) {
 
                 .container {
                     max-width: 1200px;
-                    margin: auto;
+                    margin: 0 50px;
                 }
 
             `}

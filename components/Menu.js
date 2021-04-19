@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const IconStyle = styled.div`
-    z-index: 2;
+    z-index: 200;
     position: fixed;
     right: 80px;
     top: 60px;
@@ -15,7 +15,7 @@ const MenuStyle = styled.div`
     height: 100vh;
     background-color: black;
     position: fixed;
-    top: 0;
+    right: 0;
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -43,6 +43,10 @@ const NavStyle = styled.h1`
 `
 
 const SpanStyle = styled.span`
+    font-size: 3.5rem;
+`
+const EmojiStyle = styled.p`
+    display: inline-block;
     font-size: 3.5rem;
 `
 
@@ -91,19 +95,17 @@ const MenuItem = {
   }
 
 
-function Menu() {
+function Menu({ menuState, setMenuState }) {
     const router = useRouter()
-    const [ isOpen, setIsOpen ] = useState(false)
 
     return (
         <>
-        <IconStyle>
-                <div
-                    onClick={() => setIsOpen(state => !state)}
-                >
+            <IconStyle
+                onClick={() => setMenuState(!menuState)}
+            >
                 <motion.svg
                     variants={iconVariants}
-                    animate={isOpen ? 'opened' : 'closed'}
+                    animate={menuState ? 'opened' : 'closed'}
                     whileHover={{ scale: 3 }}
                     whileTap={{ scale: 1.8 }}
                     width='24'
@@ -114,85 +116,101 @@ function Menu() {
                 >
                 <path
                     d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
-                    fill={isOpen ? 'white' : 'black'}
+                    fill={menuState ? 'white' : 'black'}
                 />
                 </motion.svg>
-        </div>
-        </IconStyle>
-        <motion.div
-            initial={false}
-            variants={menuVariants}
-            animate={isOpen ? 'opened' : 'closed'}
-            transition={{ ease: "easeOut", duration: 0.25 }}
-        >
-            <MenuStyle>
-                <motion.div 
-                    className="menu"
-                    variants={MenuList}
-                    initial="hidden"
-                    animate={isOpen ? 'show' : 'hidden'}
-                    transition={{ease: 'easeOut'}}
-                >
-                    <NavStyle>
-                        <motion.h1 
-                            className="active" 
-                            variants={MenuItem}
-                            transition={{ease: 'easeInOut', duration: 0.15}}
-                        >
-                        <Link href='/'>
-                            <a> Home <SpanStyle><span>🏠</span></SpanStyle></a>
-                        </Link>
-                           
-                        </motion.h1>
-
-                        <motion.h1 
-                            variants={MenuItem}
-                            transition={{ease: 'easeInOut', duration: 0.15}}
-                        >
-                            <Link href='/work'>
-                                <a>Work <SpanStyle><span>🛠️</span></SpanStyle></a>
-                            </Link>
-                        </motion.h1>
-
-                        <motion.h1 
-                            variants={MenuItem}
-                            transition={{ease: 'easeInOut', duration: 0.15}}
-                        >
-                            <Link href='/jawn'>
-                                <a>Jawn <SpanStyle><span>💡</span></SpanStyle></a>
-                            </Link>
-                        </motion.h1>
-
-                        <motion.h1 
-                            variants={MenuItem}
-                            transition={{ease: 'easeInOut', duration: 0.15}}
-                        >
-                            <Link href='/pizza'>
-                                <a>Pizza <SpanStyle><span>🍕</span></SpanStyle></a>
-                            </Link>
-                        </motion.h1>
-                        <motion.h1 
-                            variants={MenuItem}
-                            transition={{ease: 'easeInOut', duration: 0.15}}
-                        >
-                            <Link href='about'>
-                                <a>About <SpanStyle><span>😬</span></SpanStyle></a>
-                            </Link>
-                        </motion.h1>
-                        <motion.h1 
-                            variants={MenuItem}
-                            transition={{ease: 'easeInOut', duration: 0.15}}
-                        >
-                            <Link href='/contact'>
-                                <a>Contact <SpanStyle><span>📪</span></SpanStyle></a>
-                            </Link>
-                        </motion.h1>
-                    </NavStyle>
-                </motion.div>
-            </MenuStyle>
-        </motion.div>
+            </IconStyle>
         
+            <motion.div
+                initial={false}
+                variants={menuVariants}
+                animate={menuState ? 'opened' : 'closed'}
+                transition={{ ease: "easeOut", duration: 0.25 }}
+            >
+                <MenuStyle>
+                    <motion.div 
+                        className="menu"
+                        variants={MenuList}
+                        initial="hidden"
+                        animate={menuState ? 'show' : 'hidden'}
+                        transition={{ease: 'easeOut'}}
+                    >
+                        <NavStyle>
+                            <motion.h1 
+                                className="active" 
+                                variants={MenuItem}
+                                transition={{ease: 'easeInOut', duration: 0.15}}
+                            >
+                            <Link href='/'>
+                                <div>
+                                    <a>Home </a>
+                                    <EmojiStyle>🏠</EmojiStyle>
+                                </div>
+                            </Link>
+                            
+                            </motion.h1>
 
+                            <motion.h1 
+                                variants={MenuItem}
+                                transition={{ease: 'easeInOut', duration: 0.15}}
+                            >
+                                <Link href='/work'>
+                                    <div>
+                                        <a>Work </a>
+                                        <EmojiStyle>🛠️</EmojiStyle>
+                                    </div>
+                                </Link>
+                            </motion.h1>
+
+                            <motion.h1 
+                                variants={MenuItem}
+                                transition={{ease: 'easeInOut', duration: 0.15}}
+                            >
+                                <Link href='/jawn'>
+                                    <div>
+                                        <a>Jawn </a>
+                                        <EmojiStyle>💡</EmojiStyle>
+                                    </div>
+                                </Link>
+                            </motion.h1>
+
+                            <motion.h1 
+                                variants={MenuItem}
+                                transition={{ease: 'easeInOut', duration: 0.15}}
+                            >
+                                <Link href='/pizza'>
+                                    <div>
+                                        <a>Pizza </a>
+                                        <EmojiStyle>🍕</EmojiStyle>
+                                    </div>
+                                </Link>
+                            </motion.h1>
+                            <motion.h1 
+                                variants={MenuItem}
+                                transition={{ease: 'easeInOut', duration: 0.15}}
+                            >
+                                <Link href='about'>
+                                    <div>
+                                        <a>About </a>
+                                        <EmojiStyle>😬</EmojiStyle>
+                                    </div>
+                                </Link>
+                            </motion.h1>
+                            <motion.h1 
+                                variants={MenuItem}
+                                transition={{ease: 'easeInOut', duration: 0.15}}
+                            >
+                                <Link href='/contact'>
+                                    <div>
+                                        <a>Contact </a>
+                                        <EmojiStyle>📪</EmojiStyle>
+                                    </div>
+                                </Link>
+                            </motion.h1>
+                        </NavStyle>
+                    </motion.div>
+                </MenuStyle>
+            </motion.div>
         </>
     )
 }
