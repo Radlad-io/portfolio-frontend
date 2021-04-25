@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -45,9 +46,8 @@ const NavStyle = styled.h1`
 const SpanStyle = styled.span`
     font-size: 3.5rem;
 `
-const EmojiStyle = styled.p`
+const EmojiStyle = styled.div`
     display: inline-block;
-    font-size: 3.5rem;
 `
 
 const iconVariants = {
@@ -144,7 +144,13 @@ function Menu({ menuState, setMenuState }) {
                             <Link href='/'>
                                 <div>
                                     <a>Home </a>
-                                    <EmojiStyle>🏠</EmojiStyle>
+                                    <EmojiStyle>
+                                        <Image
+                                            src="/Icons/Home.png"
+                                            width="100px"
+                                            height="100px"
+                                        ></Image>
+                                    </EmojiStyle>
                                 </div>
                             </Link>
                             
